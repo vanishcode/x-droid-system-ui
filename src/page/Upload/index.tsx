@@ -3,6 +3,14 @@ import { Upload, Icon, Spin } from "@douyinfe/semi-ui";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as UploadIcon } from "../../components/Icon/upload.svg";
+import { UPLOAD_API } from "../../api/upload";
+import {
+  UPLOAD_TITLE,
+  UPLOAD_SUB_TITLE,
+  UPLOAD_WIDGET_TITLE,
+  UPLOAD_WIDGET_SUB_TITLE,
+} from "../../mock/upload";
+
 import "./index.scss";
 
 export default function UploadComponent() {
@@ -12,8 +20,8 @@ export default function UploadComponent() {
   return (
     <div className="x-droid-system-ui-upload">
       <div className="x-droid-system-ui-upload__title">
-        <h1>未知威胁文件检测系统</h1>
-        <h3>基于行为分析的实时文件病毒检测</h3>
+        <h1>{UPLOAD_TITLE}</h1>
+        <h3>{UPLOAD_SUB_TITLE}</h3>
       </div>
       <Spin
         spinning={loading}
@@ -29,7 +37,7 @@ export default function UploadComponent() {
         <div className="x-droid-system-ui-upload__container">
           <Upload
             className="x-droid-system-ui-upload__target"
-            action="https://api.semi.design/upload"
+            action={UPLOAD_API}
             draggable={true}
             dragIcon={<Icon svg={<UploadIcon />} />}
             limit={1}
@@ -44,10 +52,10 @@ export default function UploadComponent() {
           >
             <UploadIcon className="x-droid-system-ui-upload__icon" />
             <h5 className="x-droid-system-ui-upload__title">
-              点击上传文件或拖拽文件到这里
+              {UPLOAD_WIDGET_TITLE}
             </h5>
             <span className="x-droid-system-ui-upload__subtitle">
-              支持 *.apk 类型文件
+              {UPLOAD_WIDGET_SUB_TITLE}
             </span>
           </Upload>
         </div>

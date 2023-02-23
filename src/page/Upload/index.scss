@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(46, 50, 56, 0.05);
   flex-direction: column;
 
   &__title {
@@ -29,7 +28,7 @@
   }
 
   &__target {
-    border: 2px dashed rgba(0, 0, 0, 0.25);
+    border: 1px dashed rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     overflow: hidden;
     padding: 10px 20px;

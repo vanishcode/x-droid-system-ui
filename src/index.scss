@@ -143,8 +143,15 @@ table {
   border-spacing: 0;
 }
 
+body {
+  min-width: 1000px;
+}
+
 .x-droid-system-ui {
+  background: rgba(46, 50, 56, 0.05);
+
   &__header {
+    min-width: 1000px;
     z-index: 1;
     position: fixed;
     top: 0;

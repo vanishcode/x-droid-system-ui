@@ -10,8 +10,14 @@ import {
 
 import "./index.scss";
 
+function createRange(length: number, initializer: Function) {
+  return [...new Array(length)].map((_, index) => {
+    return initializer(index);
+  });
+}
+
 export default function Result() {
-  const data = ['检测', '详情', '关于', '社区'];
+  const data = ["检测", "详情", "关于", "社区"];
 
   const info = [
     {
@@ -54,9 +60,10 @@ export default function Result() {
       dataIndex: "updateTime",
     },
   ];
-  const tableData = [
-    {
-      key: "1",
+
+  const tableData = createRange(20, (index: number) => {
+    return {
+      key: `${index}`,
       name: "病毒",
       nameIconSrc:
         "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/figma-icon.png",
@@ -64,112 +71,48 @@ export default function Result() {
       owner: "通过",
       updateTime: "2020-02-02 05:13",
       avatarBg: "grey",
-    },
-    {
-      key: "2",
-      name: "钓鱼",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "2M",
-      owner: "通过",
-      updateTime: "2020-01-17 05:31",
-      avatarBg: "red",
-    },
-    {
-      key: "4",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-    {
-      key: "5",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-    {
-      key: "6",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-    {
-      key: "7",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-    {
-      key: "8",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-    {
-      key: "9",
-      name: "权限",
-      nameIconSrc:
-        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/docs-icon.png",
-      size: "34KB",
-      owner: "失败",
-      updateTime: "2020-01-26 11:01",
-      avatarBg: "light-blue",
-    },
-  ];
+    };
+  });
 
   return (
     <div className="x-droid-system-ui-result">
-      <div className="x-droid-system-ui-result__target">
-        <Progress
-          className="x-droid-system-ui-result__target-score"
-          percent={50}
-          showInfo
-          type="circle"
-          width={100}
-          format={() => "50 score"}
-          aria-label="score"
-        />
-
-        <Descriptions
-          data={info}
-          className="x-droid-system-ui-result__target-desc"
-        />
+      <div className="x-droid-system-ui-result__title">
+        <h1>检测结果</h1>
+        <h3>2023.01.20</h3>
       </div>
-      <i className="x-droid-system-ui-result__divider"></i>
-      <Tabs type="line" className="x-droid-system-ui-result__list">
-        {data.map((item: any, index: number) => {
-          return (
-            <TabPane tab={item} itemKey={`${index}`} key={index}>
-              <Table
-                columns={columns}
-                dataSource={tableData}
-                pagination={false}
-                className="x-droid-system-ui-result__list-item"
-              />
-            </TabPane>
-          );
-        })}
-      </Tabs>
+      <div className="x-droid-system-ui-result__detail">
+        <div className="x-droid-system-ui-result__target">
+          <Progress
+            className="x-droid-system-ui-result__target-score"
+            percent={50}
+            showInfo
+            type="circle"
+            width={100}
+            format={() => "50 score"}
+            aria-label="score"
+          />
+
+          <Descriptions
+            data={info}
+            className="x-droid-system-ui-result__target-desc"
+          />
+        </div>
+        <i className="x-droid-system-ui-result__divider"></i>
+        <Tabs type="line" className="x-droid-system-ui-result__list">
+          {data.map((item: any, index: number) => {
+            return (
+              <TabPane tab={item} itemKey={`${index}`} key={index}>
+                <Table
+                  columns={columns}
+                  dataSource={tableData}
+                  pagination={false}
+                  className="x-droid-system-ui-result__list-item"
+                />
+              </TabPane>
+            );
+          })}
+        </Tabs>
+      </div>
     </div>
   );
 }

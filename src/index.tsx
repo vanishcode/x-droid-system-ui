@@ -17,7 +17,7 @@ const { Header } = Layout;
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Layout>
+      <Layout className="x-droid-system-ui">
         <Header className="x-droid-system-ui__header">
           <LogoIcon className="x-droid-system-ui__logo" />{" "}
           <Link to="/" className="x-droid-system-ui__home">

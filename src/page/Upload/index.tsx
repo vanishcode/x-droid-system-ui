@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Upload, Icon, Spin } from "@douyinfe/semi-ui";
+import { Upload, Icon, Spin, Notification } from "@douyinfe/semi-ui";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as UploadIcon } from "../../components/Icon/upload.svg";
-import { UPLOAD_API } from "../../api/upload";
+import { HEADERS } from "../../api/base";
+import { UPLOAD_API, ANALYSIS_API } from "../../api/upload";
 import {
   UPLOAD_TITLE,
   UPLOAD_SUB_TITLE,
@@ -12,6 +13,20 @@ import {
 } from "../../mock/upload";
 
 import "./index.scss";
+
+function getHash(response: any) {
+  const link = response.data.links.self;
+  const base64 = link.replace(ANALYSIS_API + "/", "");
+  const raw = atob(base64);
+  const [hash] = raw.split(":");
+  return hash;
+}
+
+function getData(file: File) {
+  return {
+    file,
+  };
+}
 
 export default function UploadComponent() {
   const navigate = useNavigate();
@@ -38,17 +53,27 @@ export default function UploadComponent() {
           <Upload
             className="x-droid-system-ui-upload__target"
             action={UPLOAD_API}
+            headers={HEADERS}
+            data={getData}
             draggable={true}
             dragIcon={<Icon svg={<UploadIcon />} />}
             limit={1}
             accept=".apk"
-            onSuccess={() => {
+            onProgress={() => {
+              setLoading(true);
+            }}
+            onSuccess={(response) => {
+              const hash = getHash(response);
+              const route = `result?hash=${hash}`;
               setTimeout(() => {
-                setLoading(true);
-                setTimeout(() => {
-                  navigate("result");
-                }, 1000);
+                navigate(route);
               }, 1000);
+            }}
+            onError={() => {
+              setLoading(false);
+              Notification.error({
+                title: "上传失败",
+              });
             }}
           >
             <UploadIcon className="x-droid-system-ui-upload__icon" />

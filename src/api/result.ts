@@ -1,1 +1,3 @@
-export const RESULT_API = "/api/result";
+import { BASE } from "./base";
+
+export const RESULT_API = BASE + "/files/{id}";

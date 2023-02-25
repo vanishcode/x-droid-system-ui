@@ -31,14 +31,14 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <IconLink /> 使用 virustotal 检测
           </Link>
         </Header>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Upload />} />
-            <Route path="result" element={<Result />} />
-            <Route path="*" element={<NoMatch />} />
-          </Route>
-        </Routes>
       </Layout>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Upload />} />
+          <Route path="result" element={<Result />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

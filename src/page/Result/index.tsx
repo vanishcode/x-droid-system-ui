@@ -13,6 +13,7 @@ import {
   RESULT_SUB_TITLE,
   TABS_DATA,
   FILE_SCORE,
+  FILE_COLOR,
   FIRE_TITLE,
   FILE_INFO_LIST,
   TABLE_COLUMNS,
@@ -35,6 +36,7 @@ export default function Result() {
             className="x-droid-system-ui-result__target-score"
             percent={FILE_SCORE}
             showInfo
+            stroke={FILE_COLOR}
             type="circle"
             width={100}
             format={() => FIRE_TITLE}

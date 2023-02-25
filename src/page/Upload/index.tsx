@@ -41,6 +41,7 @@ export default function UploadComponent() {
             draggable={true}
             dragIcon={<Icon svg={<UploadIcon />} />}
             limit={1}
+            accept=".apk"
             onSuccess={() => {
               setTimeout(() => {
                 setLoading(true);

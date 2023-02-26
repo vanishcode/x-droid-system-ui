@@ -19,7 +19,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <Layout className="x-droid-system-ui">
         <Header className="x-droid-system-ui__header">
-          <LogoIcon className="x-droid-system-ui__logo" />{" "}
+          <div className="x-droid-system-ui__logo">
+            <LogoIcon />
+          </div>
           <Link to="/" className="x-droid-system-ui__home">
             XDroid System
           </Link>
@@ -28,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             className="x-droid-system-ui__link"
             target={"_blank"}
           >
+            {/* @ts-ignore */}
             <IconLink /> 使用 virustotal 检测
           </Link>
         </Header>

@@ -1,5 +1,5 @@
-import { BASE } from "./base";
+import { BASE, VIRUSTOTAL_BASE } from "./base";
 
 export const UPLOAD_API = BASE + "/files";
 
-export const ANALYSIS_API = BASE + "/analyses";
+export const ANALYSIS_API = VIRUSTOTAL_BASE + "/analyses/";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Upload, Icon, Spin, Notification } from "@douyinfe/semi-ui";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ import "./index.scss";
 
 function getHash(response: any) {
   const link = response.data.links.self;
-  const base64 = link.replace(ANALYSIS_API + "/", "");
+  const base64 = link.replace(ANALYSIS_API, "");
   const raw = atob(base64);
   const [hash] = raw.split(":");
   return hash;
@@ -56,6 +56,7 @@ export default function UploadComponent() {
             headers={HEADERS}
             data={getData}
             draggable={true}
+            // @ts-ignore
             dragIcon={<Icon svg={<UploadIcon />} />}
             limit={1}
             accept=".apk"
@@ -76,7 +77,9 @@ export default function UploadComponent() {
               });
             }}
           >
-            <UploadIcon className="x-droid-system-ui-upload__icon" />
+            <div className="x-droid-system-ui-upload__icon">
+              <UploadIcon />
+            </div>
             <h5 className="x-droid-system-ui-upload__title">
               {UPLOAD_WIDGET_TITLE}
             </h5>

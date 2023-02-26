@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://www.virustotal.com/api/v3/:match*"
+    }
+  ]
+}
